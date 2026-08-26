@@ -20,7 +20,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # 初始化Deepseek客户端
 client = OpenAI(
     base_url="https://api.deepseek.com/",
-    api_key="sk-929383ac40cf4bdfa60560ccaba19282"  # 请替换为实际API密钥
+    api_key="your_key"  # 请替换为实际API密钥
 )
 
 # ================== 全局配置 ==================
