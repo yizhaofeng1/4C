@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学术价值</title>
+    <link rel="stylesheet" href="{% static 'css/siteBase.css' %}">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../public/favicon.png" type="image/x-icon">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       body{
+        background-image: url('{% static "public/bg4.jpg" %}');
+         height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: '华文中宋', sans-serif;
+        }
+
+        .page-container {
+            flex: 1;
+            display: flex;
+            height: calc(100vh - 80px);
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .left-panel {
+            flex: 2;
+            min-width: 200px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            background: transparent;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .right-panel {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            background: transparent;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .page-title h1 {
+            color: #FFD700;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #FFD700;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .map-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(139, 69, 19, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .map-link:hover {
+            background-color: rgba(101, 50, 14, 0.7);
+        }
+
+        .left-panel:hover,
+        .right-panel:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 可视化容器优化 */
+        .three-d-bars {
+            height: 100%;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .three-d-bars iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 链接列表美化 */
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list li {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-list li::before {
+            content: "»";
+            color: #FFD700;
+            margin-right: 0.8rem;
+            font-weight: bold;
+        }
+
+        .link-list a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1.5;
+            display: block;
+            position: relative;
+            z-index: 1;
+            word-break: break-word;
+        }
+
+        .link-list li:hover {
+            background: rgba(76, 175, 80, 0.1);
+            transform: translateX(10px);
+        }
+
+        .link-list li:hover::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: #FFD700;
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+        }
+
+        /* 动态装饰元素 */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .deco-element {
+            position: absolute;
+            width: 120px;
+            opacity: 0.1;
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态装饰元素 -->
+    <img src="{% static 'public/cloud.png' %}" class="deco-element" style="top:20%; left:10%">
+    <img src="{% static 'public/mountain.png' %}" class="deco-element" style="top:60%; right:15%">
+
+    <div class="page-title">
+        <h1>《山海经》学术与文学价值</h1>
+    </div>
+
+    <a href="{% url 'index' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <a href="{% url 'site3' %}" class="map-link">3D地图演示</a>
+
+    <div class="page-container">
+        <div class="left-panel">
+            <div class="three-d-bars">
+                <iframe src="{% url 'combined_charts' %}"
+                    title="山海经数据可视化仪表盘"></iframe>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <ul class="link-list">
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4c-uVEgEu7G0kBrg_GOTMoldNM07RCDApZwTJ5AoLFkoGr1xuH02vI1wOI1nIFsxE32PuTu-3CjFbMUioyz_B2D-8e4xvbS8jg6C5_Jkw2TSry_quRRwHEKFVQDziIx-y29BpA90Uluj6yr3yGe_dBbiM0nkBVHpFK2VQqwYA8n0A==&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="查看《山海经》生态思想研究全文">
+                        1. 《山海经》动植物生态思想、意蕴兴发及文学阐释
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4ejV_x5koc9WFLVUq5cz1r8F8ckOybNYTee3cYcfYtnQm_GamSwm3ORomQZcKOKPaRCTeuCuqol4VNFMXj72XIyLinx5mLCknge7Anh3KwnUIOdElCiYnLak2Srp4fqR1pHbGpIraFPw4YSD7StIB4EMXL17wFJYflIRkDCsVrxyw==&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="色彩语言体系研究全文">
+                        2. 《山海经》色彩语言体系研究
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4djAHXVV46EUwzSDbb1_cNgyqpwlAyhWloHN0gbZhBmxu2GjY0YpjbbbOXeiqfbypgiEAmCrHuk9Mgltyfc4WwK3kXdBNqwb0IB0ro3jKnAALyX9vz2ZAyTnq84Q9QHLrGW7A1K9fNYj0j9wbjkwtv81Wo-p4S1oSy1KlbBfBS26sq_WLyFZYcG&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="查看猴形象设计研究">
+                        3. 《山海经》中猴形象的设计研究
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4fYPiPPk5OR82wCQEw0Idr-h5v-7yf-_22wkBBPgvcYIJHmNnLvgQ7UlQLK3ua2D9diFyZFFj2NNuHQA9UYLoV4t82xdA3P_mpueyLiWtcsoiydDIeuzWWfcGIZQfX2jLSon5xVXfgRNda3OFVv4BeC24vY5ZtlfeDzAPmtUWRBk1j4u6PwgQ-S&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="神兽插画研究全文">
+                        4. 基于《山海经》神兽形象的当代插画研究与创作
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4fMRWGDbJOg4jwxgF8_xZBsaeFhAgd50RI3kMirDiTefVAriHjcsN8Op0A3kT8SGLc_tuiITyztnaEmfj6eNCigJ5waDL7NKfmyVUgo-XQ1-cekeP1zYsP-rRF9S3Ns7Tw8KyxFXzMIvmB4wi2OY7WTeuqKoUDnZUtdwxeO_BrZfw==&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="龙文化内涵研究">
+                        5. 《山海经》中的龙及其文化内涵
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4fqljxt9wauZbWIIhqo2kFVfeNghB1oPBAQUlTWNlugiTqKLHqbanxud3dzwra_L3mU5UBc6r4Dwauv9VFMg_2FzEysMa9rOkjMeU5OnRP7YdDt-BDKvJoaVPlyAYZG_SUjNMCI9r1M0PrigkG02RuRl66bby7GRleBw5rt8p9UMQ==&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="昆仑地理考证">
+                        6. 昆仑何在?------《山海经》昆仑地理考
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4evVlpLoUMaXE-yRAvSzbE8II7S39G1PAVJ3CFss_4fmehAo1cctHCNCVCWYnXsiHQc1kjtOxMZ9itpUIhq8K45378AOmEPZ7No2lH4Ekt1PIKOFE7U5V998uP3N9U61LVCvQHuZhsaKwcV6GWQZaXsnnCDJWswT5kRa-MlSj3DBA==&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="医学地理学研究">
+                        7. 《山海经》的医学地理学价值
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4dSConoJOZgUL3XfncHBLxU0BWAO0oZ7r_aROTHpFjb0KJjwSYJCghb89sCUsEEAnYgNZ41ohNtY1Out_OANZbD0Z7nw5HOjNfWsBdMgPn65QqxHdpsX4qgVdbbb-L_ITVuIMqh0Is9hbz9JJUSCaURilcYFlANdJyC0H9DUWPlDtffmbb_DCl_&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="神怪形象设计应用">
+                        8. 《山海经》神怪形象的分析及现代设计应用研究
+                    </a>
+                </li>
+                <li>
+                    <a href="https://kns.cnki.net/kcms2/article/abstract?v=RN_8baVbY4d2rYJjEcuvV0yuSpW7PVyRUzN_gZh2mDWJvSd5LrEbDHt7JttnixvTCxJYwvs6Md6WYYzdVMjRePaDeI3Hmm2NwwMfsEB4tl3Sp7zmpKUm2XVjK4WkFMwpfy8k7oxi6VXd9wXjuhgUP4Q3IltwdmpLn-iVV901n6GEpcRAESYkyI2-MePaWuE_&uniplatform=NZKPT&language=CHS"
+                        target="_blank" title="动画电影应用研究">
+                        9. 中国动画电影对《山海经》题材的应用研究
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

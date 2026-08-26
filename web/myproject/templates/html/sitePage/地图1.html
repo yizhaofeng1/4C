@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>地理位置展示</title>
+    <link rel="stylesheet" href="{% static 'css/siteBase.css' %}" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="{% static 'public/favicon.png' %}" type="image/x-icon">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 整体布局 */
+        body {
+            background-image: url('{% static "public/bg1.jpg" %}');
+            height: calc(100vh + 200px);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+       .multi-angle-map-display {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 15px;
+            /* 添加边框样式 */
+            border: 1px solid #8B4513;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* 返回首页按钮样式 */
+       .back-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid #8B4513;
+            border-radius: 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+
+       .back-btn i {
+            margin-right: 5px;
+        }
+
+        /* 标题下面的各个图布局 */
+       .page-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 80px + 650px);
+            padding: 15px;
+            gap: 15px;
+        }
+
+        /* 上半部分布局：左侧和中间区域 */
+       .top-container {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+        }
+
+        /* 左侧区域:横柱状图 */
+       .left-panel {
+            flex: 1;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 300px;
+        }
+
+       .chart {
+            min-width: 700px;
+            border: 1px solid #6a3434;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* 中间区域: 上:3d柱状图 下:时间折线图*/
+       .center-panel {
+            flex: 1.5;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 650px;
+        }
+
+       .three-d-bars {
+            height: 600px;
+            position: relative;
+        }
+
+        /* 新增分界框（浅红色虚化） */
+       .three-d-bars::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% + 30px);
+            height: 1px;
+            background: rgba(255, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+        }
+
+        /* 新增的时间轴容器样式 */
+       .new-timeline-bar {
+            border: 1px solid #ba1111;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 底部区域 省份柱形图 方位雷达图 四经雷达图*/
+       .bottom-panel {
+            display: flex;
+            gap: 15px;
+            border: 1px solid #6a3434;
+            padding: 15px;
+        }
+
+       .new-map-container {
+            flex: 0.75;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            height: 500px;
+            position: relative;
+            padding: 15px;
+        }
+
+       .new-timeline-container {
+            flex: 1;
+            height: 500px;
+            border: 1px solid black;
+            margin-bottom: 0;
+        }
+
+       .new-four-radar {
+            flex: 1;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+       .new-timeline-bar iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-title">
+        <h1>山海经地理位置演示</h1>
+    </div>
+    <a href="{% url 'index' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="multi-angle-map-display" onclick="window.location.href='{% url 'map2' %}'">
+        多角度地图展示<i class="fas fa-arrow-right"></i>
+    </div>
+    <!-- 新增页面容器 -->
+    <div class="page-container">
+        <!-- 上半部分：左侧和中间区域 -->
+        <div class="top-container">
+            <!-- 左侧内容区 -->
+            <div class="left-panel">
+                <iframe src="{% url 'province_quantity_horizontal_pictorialbar' %}" width="100%" height="80%"></iframe>
+            </div>
+            <!-- 中间区域 -->
+            <div class="center-panel">
+                <div class="three-d-bars">
+                    <iframe src="{% url 'china_map_3D' %}" width="100%" height="70%"></iframe>
+                </div>
+            </div>
+        </div>
+        <!-- 新增的时间轴区域 -->
+        <div class="new-timeline-bar">
+            <iframe src="{% url 'timeline_bar_book_num' %}" width="100%" height="100%"></iframe>
+        </div>
+        <!-- 底部区域 -->
+        <div class="bottom-panel">
+            <div class="new-map-container">
+                <h3></h3>
+                <iframe src="{% url 'direction_statistics_3d_bar' %}" width="80%" height="80%"></iframe>
+            </div>
+            <div class="new-timeline-container">
+                <h3></h3>
+                <iframe src="{% url 'scriptures' %}" width="100%" height="85%"></iframe>
+            </div>
+            <div class="new-four-radar">
+                <h3></h3>
+                <iframe src="{% url 'Genus' %}" width="100%" height="85%"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+                <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts.min.js"></script>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts-gl.min.js"></script>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/maps/china.js"></script>
+
+    
+</head>
+<body >
+    <div id="china_map_3d" class="chart-container" style="width:900px; height:500px; "></div>
+    <script>
+        var chart_china_map_3d = echarts.init(
+            document.getElementById('china_map_3d'), 'white', {renderer: 'canvas'});
+            
+        // 点击事件
+        echarts.getInstanceByDom(document.getElementById('china_map_3d')).on('click', function(params) {
+            var provinceMap = {
+                '北京市': 'beijing.html',
+                '天津市': 'tianjin.html',
+                '河北省': 'hebei.html',
+                '山西省': 'shanxi1.html',
+                '内蒙古自治区': 'neimenggu.html',
+                '辽宁省': 'liaoning.html',
+                '吉林省': 'jilin.html',
+                '黑龙江省': 'heilongjiang.html',
+                '上海市': 'shanghai.html',
+                '江苏省': 'jiangsu.html',
+                '浙江省': 'zhejiang.html',
+                '安徽省': 'anhui.html',
+                '福建省': 'fujian.html',
+                '江西省': 'jiangxi.html',
+                '山东省': 'shandong.html',
+                '河南省': 'henan.html',
+                '湖北省': 'hubei.html',
+                '湖南省': 'hunan.html',
+                '广东省': 'guangdong.html',
+                '海南省': 'hainan.html',
+                '重庆市': 'chongqing.html',
+                '四川省': 'sichuan.html',
+                '贵州省': 'guizhou.html',
+                '云南省': 'yunnan.html',
+                '西藏自治区': 'xizang.html',
+                '陕西省': 'shanxi2.html',
+                '甘肃省': 'gansu.html',
+                '青海省': 'qinghai.html',
+                '宁夏回族自治区': 'ningxia.html',
+                '新疆维吾尔自治区': 'xinjiang.html',
+                '香港特别行政区': 'hongkong.html',
+                '澳门特别行政区': 'aomen.html',
+                '台湾省': 'taiwan.html',
+                '非中国地区': 'non_china.html',
+                '地理区域': 'geo_region.html',
+                '未知地区': 'unknown_region.html'
+            };
+
+            // 跳转逻辑
+            if (provinceMap[params.name]) {
+                window.location.href = provinceMap[params.name];
+            } else {
+                console.log('未找到对应的跳转页面: ' + params.name);
+            }
+        });
+    
+        var option_china_map_3d = {
+    "backgroundColor": "transparent",
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "aria": {
+        "enabled": false
+    },
+    "color": [
+        "#5470c6",
+        "#91cc75",
+        "#fac858",
+        "#ee6666",
+        "#73c0de",
+        "#3ba272",
+        "#fc8452",
+        "#9a60b4",
+        "#ea7ccc"
+    ],
+    "series": [
+        {
+            "type": "bar3D",
+            "name": "bar3D",
+            "coordinateSystem": "geo3D",
+            "grid3DIndex": 0,
+            "geo3DIndex": 0,
+            "globeIndex": 0,
+            "barSize": 1,
+            "bevelSize": 0,
+            "bevelSmoothness": 2,
+            "minHeight": 2,
+            "label": {
+                "show": false,
+                "margin": 8,
+                "valueAnimation": false
+            },
+            "itemStyle": {
+                "color": "rgba(218,165,32,0.8)"
+            },
+            "emphasis": {},
+            "data": [
+                {
+                    "name": "\u4e91\u5357\u7701",
+                    "value": [
+                        102.7123,
+                        25.0406,
+                        40
+                    ]
+                },
+                {
+                    "name": "\u5185\u8499\u53e4\u81ea\u6cbb\u533a",
+                    "value": [
+                        111.7656,
+                        40.8175,
+                        10
+                    ]
+                },
+                {
+                    "name": "\u5317\u4eac\u5e02",
+                    "value": [
+                        116.4074,
+                        39.9042,
+                        1
+                    ]
+                },
+                {
+                    "name": "\u53f0\u6e7e\u7701",
+                    "value": [
+                        121.5091,
+                        25.0443,
+                        5
+                    ]
+                },
+                {
+                    "name": "\u5409\u6797\u7701",
+                    "value": [
+                        125.3245,
+                        43.8868,
+                        7
+                    ]
+                },
+                {
+                    "name": "\u56db\u5ddd\u7701",
+                    "value": [
+                        104.0758,
+                        30.6516,
+                        77
+                    ]
+                },
+                {
+                    "name": "\u5730\u7406\u533a\u57df",
+                    "value": [
+                        110,
+                        50,
+                        20
+                    ]
+                },
+                {
+                    "name": "\u5b81\u590f\u56de\u65cf\u81ea\u6cbb\u533a",
+                    "value": [
+                        106.259,
+                        38.4722,
+                        2
+                    ]
+                },
+                {
+                    "name": "\u5b89\u5fbd\u7701",
+                    "value": [
+                        117.283,
+                        31.8612,
+                        10
+                    ]
+                },
+                {
+                    "name": "\u5c71\u4e1c\u7701",
+                    "value": [
+                        117.0009,
+                        36.6758,
+                        155
+                    ]
+                },
+                {
+                    "name": "\u5c71\u897f\u7701",
+                    "value": [
+                        112.5492,
+                        37.857,
+                        82
+                    ]
+                },
+                {
+                    "name": "\u5e7f\u4e1c\u7701",
+                    "value": [
+                        113.2665,
+                        23.1322,
+                        24
+                    ]
+                },
+                {
+                    "name": "\u5e7f\u897f\u58ee\u65cf\u81ea\u6cbb\u533a",
+                    "value": [
+                        108.32,
+                        22.824,
+                        1
+                    ]
+                },
+                {
+                    "name": "\u65b0\u7586\u7ef4\u543e\u5c14\u81ea\u6cbb\u533a",
+                    "value": [
+                        87.6168,
+                        43.8256,
+                        6
+                    ]
+                },
+                {
+                    "name": "\u672a\u77e5",
+                    "value": [
+                        "\u672a\u77e5",
+                        "\u672a\u77e5",
+                        2
+                    ]
+                },
+                {
+                    "name": "\u672a\u77e5\u5730\u533a",
+                    "value": [
+                        70,
+                        55,
+                        99
+                    ]
+                },
+                {
+                    "name": "\u6c5f\u82cf\u7701",
+                    "value": [
+                        118.7674,
+                        32.0415,
+                        13
+                    ]
+                },
+                {
+                    "name": "\u6c5f\u897f\u7701",
+                    "value": [
+                        115.8922,
+                        28.6765,
+                        7
+                    ]
+                },
+                {
+                    "name": "\u6cb3\u5317\u7701",
+                    "value": [
+                        114.4995,
+                        38.1006,
+                        35
+                    ]
+                },
+                {
+                    "name": "\u6cb3\u5357\u7701",
+                    "value": [
+                        113.6654,
+                        34.757,
+                        119
+                    ]
+                },
+                {
+                    "name": "\u6d59\u6c5f\u7701",
+                    "value": [
+                        120.1536,
+                        30.2875,
+                        11
+                    ]
+                },
+                {
+                    "name": "\u6d77\u5357\u7701",
+                    "value": [
+                        110.1999,
+                        20.0442,
+                        6
+                    ]
+                },
+                {
+                    "name": "\u6e56\u5317\u7701",
+                    "value": [
+                        114.2986,
+                        30.5844,
+                        23
+                    ]
+                },
+                {
+                    "name": "\u6e56\u5357\u7701",
+                    "value": [
+                        112.9823,
+                        28.1941,
+                        36
+                    ]
+                },
+                {
+                    "name": "\u7518\u8083\u7701",
+                    "value": [
+                        103.8342,
+                        36.061,
+                        36
+                    ]
+                },
+                {
+                    "name": "\u798f\u5efa\u7701",
+                    "value": [
+                        119.2965,
+                        26.0998,
+                        3
+                    ]
+                },
+                {
+                    "name": "\u8d35\u5dde\u7701",
+                    "value": [
+                        106.7135,
+                        26.5783,
+                        4
+                    ]
+                },
+                {
+                    "name": "\u8fbd\u5b81\u7701",
+                    "value": [
+                        123.4291,
+                        41.7968,
+                        11
+                    ]
+                },
+                {
+                    "name": "\u91cd\u5e86\u5e02",
+                    "value": [
+                        106.5049,
+                        29.5332,
+                        4
+                    ]
+                },
+                {
+                    "name": "\u9655\u897f\u7701",
+                    "value": [
+                        108.948,
+                        34.2632,
+                        52
+                    ]
+                },
+                {
+                    "name": "\u9752\u6d77\u7701",
+                    "value": [
+                        101.78,
+                        36.6209,
+                        180
+                    ]
+                },
+                {
+                    "name": "\u975e\u4e2d\u56fd\u5730\u533a",
+                    "value": [
+                        130,
+                        30,
+                        7
+                    ]
+                },
+                {
+                    "name": "\u9ed1\u9f99\u6c5f\u7701",
+                    "value": [
+                        126.6425,
+                        45.756,
+                        4
+                    ]
+                }
+            ],
+            "shading": "lambert",
+            "zlevel": -10,
+            "silent": false,
+            "animation": true,
+            "animationDurationUpdate": 100,
+            "animationEasingUpdate": "cubicOut"
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "bar3D"
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14,
+            "backgroundColor": "transparent",
+            "borderColor": "#ccc",
+            "borderRadius": 0,
+            "pageButtonItemGap": 5,
+            "pageButtonPosition": "end",
+            "pageFormatter": "{current}/{total}",
+            "pageIconColor": "#2f4554",
+            "pageIconInactiveColor": "#aaa",
+            "pageIconSize": 15,
+            "animationDurationUpdate": 800,
+            "selector": false,
+            "selectorPosition": "auto",
+            "selectorItemGap": 7,
+            "selectorButtonGap": 10
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "enterable": false,
+        "confine": false,
+        "appendToBody": false,
+        "transitionDuration": 0.4,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5,
+        "order": "seriesAsc"
+    },
+    "geo3D": {
+        "map": "china",
+        "boxWidth": 100,
+        "boxHeight": 10,
+        "regionHeight": 3,
+        "groundPlane": {
+            "show": false,
+            "color": "#aaa"
+        },
+        "instancing": false,
+        "itemStyle": {
+            "color": "#556B2F",
+            "borderColor": "#DAA520",
+            "borderWidth": 0.8,
+            "opacity": 1
+        },
+        "label": {
+            "show": false,
+            "formatter": function(data){return data.name + ' ' + data.value[2];}
+        },
+        "emphasis": {
+            "label": {
+                "show": false,
+                "color": "#E5E5E5",
+                "margin": 8,
+                "fontSize": 10,
+                "backgroundColor": "rgba(0,23,11,0)",
+                "valueAnimation": false
+            }
+        },
+        "light": {
+            "main": {
+                "color": "#FFD700",
+                "intensity": 1.2,
+                "shadow": false,
+                "shadowQuality": "high",
+                "alpha": 40,
+                "beta": 10
+            },
+            "ambient": {
+                "color": "#fff",
+                "intensity": 0.3
+            },
+            "ambientCubemap": {
+                "diffuseIntensity": 0.5,
+                "specularIntensity": 0.5
+            }
+        },
+        "temporalSuperSampling": {
+            "enable": "auto"
+        },
+        "zlevel": -10,
+        "left": "auto",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "width": "auto",
+        "height": "auto"
+    },
+    "title": [
+        {
+            "show": true,
+            "text": "\u5c71\u6d77\u7ecf\u5947\u7269\u5730\u7406\u4f4d\u7f6e\u7edf\u8ba1\u56fe",
+            "target": "blank",
+            "subtarget": "blank",
+            "left": "left",
+            "padding": 5,
+            "itemGap": 10,
+            "textAlign": "auto",
+            "textVerticalAlign": "auto",
+            "triggerEvent": false,
+            "textStyle": {
+                "color": "#FFFFFF"
+            }
+        }
+    ],
+    "visualMap": {
+        "show": false,
+        "type": "continuous",
+        "min": 0,
+        "max": 100,
+        "inRange": {
+            "color": [
+                "#50a3ba",
+                "#eac763",
+                "#d94e5d"
+            ]
+        },
+        "calculable": true,
+        "inverse": false,
+        "splitNumber": 5,
+        "hoverLink": true,
+        "orient": "vertical",
+        "padding": 5,
+        "showLabel": true,
+        "itemWidth": 20,
+        "itemHeight": 140,
+        "borderWidth": 0
+    }
+};
+        chart_china_map_3d.setOption(option_china_map_3d);
+    </script>
+</body>
+</html>

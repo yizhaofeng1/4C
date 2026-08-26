@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热力地图展示</title>
+    <link rel="stylesheet" href="{% static 'css/siteBase.css' %}">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../public/favicon.png" type="image/x-icon">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       body{
+        background-image: url('{% static "public/bg2.jpg" %}');
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: '华文中宋', sans-serif;
+       }
+
+       .page-container {
+        flex: 1;
+        display: flex;
+        height: calc(100vh - 80px); /* 扣除标题栏高度 */
+        padding: 15px;
+        gap: 15px;
+      }
+
+      .page-title {
+        text-align: center;
+        padding: 10px;
+      }
+
+      .page-title h1 {
+        color: white;
+        font-size: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      }
+
+      .left-panel {
+        flex: 1.5;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 8px;
+        background: transparent;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        padding: 15px;
+        min-width: 300px;
+        transition: all 0.3s;
+       }
+
+       .right-panel {
+        flex: 3;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 8px;
+        background: transparent;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        padding: 15px;
+        min-width: 300px;
+        transition: all 0.3s;
+       }
+
+       .left-panel:hover, .right-panel:hover {
+        box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        transform: translateY(-2px);
+       }
+
+       .back-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        font-size: 24px;
+        transition: transform 0.3s;
+       }
+
+       .back-btn:hover {
+        transform: translateX(-5px);
+       }
+
+       .heatmap-coarse, .heatmap-fine {
+        color: white;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+       }
+
+       .three-d-bars {
+        height: 550px;
+        width: 100%;
+       }
+
+       .three-d-bars iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+       }
+    </style>
+</head>
+<body>
+    <div class="page-title">
+        <h1>热力图演示</h1>
+    </div>
+    <a href="{% url 'index' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="page-container">
+        <div class="left-panel">
+            <div class="heatmap-coarse">热力粗略地图</div>
+             <div class="three-d-bars">
+                <iframe src="{% url 'china_map_2D' %}"></iframe>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="heatmap-fine">热力精细地图</div>
+            <div class="three-d-bars">
+                <iframe src="{% url 'china_heatmap' %}"></iframe>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>

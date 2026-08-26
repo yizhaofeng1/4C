@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精美网页</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="{% static 'public/background.mp4' %}" type="video/mp4">
+    </video>
+    <div class="content">
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'images/logo.png' %}" alt="Logo" height="200" style="padding-left: 50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">文件资料</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features">图像展示</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">有关建议</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'search' %}">异兽查询</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要内容区域 -->
+        <section class="hero-section" id="home">
+            <div class="container">
+                <h1 class="hero-title">兽临其境</h1>
+                <p class="hero-subtitle">山海经生物地理信息系统与文献编年可视化</p>
+                <button class="btn btn-custom" onclick="window.open('http://shj.nlc.cn/', '_blank')">了解更多</button>
+            </div>
+        </section>
+
+        <!-- 特点部分 -->
+        <section class="container" id="features">
+            <h2 class="section-title">更多细节展示</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-card text-center" onclick="window.location.href='{% url 'site1' %}'" style="cursor: pointer;">
+                        <i class="fas fa-feather-alt feature-icon"></i>
+                        <h3>象征意义</h3>
+                        <p>通过象征意义，我们将会体验山海经对异兽创作的趋向，感受古人对异兽的异象，并了解异兽的异象所代表的意义。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card text-center" onclick="window.location.href='{% url 'site2' %}'" style="cursor: pointer;">
+                        <i class="fas fa-graduation-cap feature-icon"></i>
+                        <h3>学术价值</h3>
+                        <p>通过文献贡献与学科演进的可视化，《山海经》不再是边缘化的“志怪书”，而显现为一条贯穿中国地理学史的隐秘线索——它既是先民试图用神话秩序驯服混沌大地的精神实验，也是现代学者在数据洪流中重寻学科本源的文化锚点。当“昆仑”的象征网络与GIS图层在屏幕上交织，当古籍中的“大荒”与现代边疆研究在热力图中重叠，我们或许会意识到：地理学从来不只是测绘空间，更是解读人类如何用故事、符号与数字，不断重构对“地方”的意义赋予。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="feature-card text-center" onclick="window.location.href='{% url 'map1' %}'" style="cursor: pointer;">
+                        <i class="fas fa-map-marked-alt feature-icon"></i>
+                        <h3>地图演示</h3>
+                        <p>《山海经》中部分山脉描述与现实地理存在对照，这一现象深刻揭示了这部古籍的多重价值。它不仅是一部神话志怪集，更是一部承载古代文明密码的“百科全书”。《山海经》的山脉与现实对照，并非简单证明其“真实性”，而是彰显了这部古籍的独特意义——它是古人用神话思维书写的“认知地图”，是现实地理、族群记忆、宇宙观和想象力的交融体。其价值不在于是否精确测绘了山河，而在于它保存了华夏文明初期的精神密码，成为连接远古与现代、真实与幻想、本土与全球的文化桥梁。正如顾颉刚所言：“《山海经》是古代民众智慧的结晶，是神话，也是历史。”</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card text-center" onclick="window.location.href='{% url 'site4' %}'" style="cursor: pointer;">
+                        <i class="fas fa-chart-bar feature-icon"></i>
+                        <h3>资料分析</h3>
+                        <p>通过异兽数据的可视化，《山海经》不再是零散怪谈的集合，而显露出一种“神话编码的系统性”——古人试图以异兽为符号，将未知的自然力量、异族威胁、生态边界纳入可描述的秩序中。这种可视化不仅是技术呈现，更是一场对先民“认知宇宙方式”的逆向解码：当“狰”与“蛊雕”在地图上跃动，当“龙脉”与“祥瑞”在网络图中交织，我们或许正无限接近那个“人神杂糅、万物有灵”的原始思维世界。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 联系我们 -->
+        <section class="container text-center py-5" id="contact">
+            <h2 class="section-title">推荐建议</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="您的姓名" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="电子邮箱" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="您的留言" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom">发送消息</button>
+                    </form>
+                    <span>本次作品异兽的数据大部分来自《山海经--全译版》这本书中，利用deepseak的api进行30.5万字的长文本提取而得，并录入MySQL数据库。
+                        地图所使用的是pyecharts上面的地图文件，网址是：https://github.com/echarts-maps/echarts-countries-js。
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // function scrollToFeatures() {
+        //     document.getElementById('features').scrollIntoView({
+        //         behavior: 'smooth',
+        //         block: 'start'
+        //     });
+        // }
+        function handleSubmit(event) {
+            event.preventDefault();
+            // 清除表单数据
+            document.getElementById('contactForm').reset();
+            // 平滑滚动到页面顶部
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

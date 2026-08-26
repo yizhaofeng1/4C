@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料分析</title>
+    <link rel="stylesheet" href="{% static 'css/siteBase.css' %}">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../public/favicon.png" type="image/x-icon">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{% static "public/bg4.jpg" %}');
+            /* 因为底部高度增加，整体页面高度也相应增加 */
+            height: calc(100vh + 700px);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+       .page-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .top-chart-area {
+            display: flex;
+            gap: 15px;
+            /* 因为底部高度增加，这里高度也相应调整 */
+            height: calc(100% - 520px);
+        }
+
+       .left-panel {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+       .left-panel .top-section,
+       .left-panel .bottom-section {
+            flex: 1;
+            display: flex;
+            overflow: auto;
+        }
+
+       .center-panel {
+            flex: 3;
+            min-width: 400px;
+            display: flex;
+            justify-content: center;
+        }
+
+       .line-chart {
+            width: 80%;
+            min-height: 300px;
+        }
+
+       .bottom-chart-area {
+            display: flex;
+            gap: 15px;
+            /* 原高度 200px 增大 300px 变为 500px */
+            height: 500px;
+        }
+
+       .rose-chart,
+       .pie-chart {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+        }
+
+       .left-panel,
+       .center-panel,
+       .line-chart,
+       .rose-chart,
+       .pie-chart {
+            /* 修改后的边框颜色为偏棕色且透明度为 0.3 */
+            border: 2px solid rgba(150, 75, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-title">
+        <h1>文献资料可视化分析</h1>
+    </div>
+    <a href="{% url 'index' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="page-container">
+        <div class="top-chart-area">
+            <div class="left-panel">
+                <div class="top-section">
+                    <iframe src="{% url 'liquid_shape_diamond' %}"></iframe>
+                </div>
+                <div class="bottom-section">
+                    <iframe src="{% url 'tree_shanhaijin_category_name' %}"></iframe>
+                </div>
+            </div>
+            <div class="center-panel">
+                <div class="line-chart">
+                    <iframe src="{% url 'combined_charts_new' %}"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-chart-area">
+            <div class="rose-chart">
+                <iframe src="{% url 'strange_creatures_rose_chart' %}"></iframe>
+            </div>
+            <div class="pie-chart">
+                <iframe src="{% url 'category_counts_pie_chart' %}"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

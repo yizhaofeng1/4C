@@ -1,0 +1,68 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+}
+
+body {
+    background-image: url('../public/bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white;
+}
+
+/* 修改伪元素应用范围 */
+.home-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+/* 调整文字颜色继承关系 */
+body {
+    color: inherit;  /* 改为继承模式 */
+}
+
+.page-title {
+    text-align: center;
+    padding: 20px;
+    color:rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 0;
+    min-height: 100vh;
+}
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+}

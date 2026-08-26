@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地图演示</title>
+    <link rel="stylesheet" href="{% static 'css/siteBase.css' %}">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../public/favicon.png" type="image/x-icon">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       body{
+        background-image: url('{% static "public/bg3.jpg" %}');
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: '华文中宋', sans-serif;
+        }
+              .page-container {
+            flex: 1;
+            display: flex;
+            height: calc(100vh - 80px);
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .left-panel {
+            flex: 1;
+            border: 1px solid #ba1111;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-panel {
+            flex: 3;
+            border: 1px solid #ba1111;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ml-bar-chart {
+            height: 500px;
+            border: 1px solid #6a3434;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .left-panel:hover,
+        .right-panel:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .heatmap-coarse, .three-d-bars {
+            flex: 1;
+            height: 100%;
+            width: 100%;
+            display: flex;
+        }
+
+        iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-title">
+        <h1>山海经象征意义展示</h1>
+    </div>
+    <a href="{% url 'index' %}" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="page-container">
+        <div class="left-panel">
+            <!-- 命名改一下 这个直接套的site2 -->
+            <div class="heatmap-coarse"><iframe src="{% url 'wordcloud_phoenix_custom' %}"></iframe></div>
+        </div>
+
+        <div class="right-panel">
+            <!-- 命名改一下 这个直接套的site2 -->
+            <div class="ml-bar-chart"> <iframe src="{% url 'symbolism_sentiment_analysis' %}"></iframe></div>
+        </div>
+    </div>
+    
+</body>
+</html>

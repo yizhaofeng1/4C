@@ -1,0 +1,36 @@
+from django.urls import path
+from django.views.generic import TemplateView
+from . import views
+urlpatterns = [
+    path('', views.index, name='index'),  # 添加根路径处理
+    path('search/', TemplateView.as_view(template_name='search.html'), name='search'),
+    path('api/creature/', views.get_creature_by_name, name='get-creature-by-name'),
+    path('sitePage/site1/', views.site1, name='site1'),
+    path('sitePage/site2/', views.site2, name='site2'),
+    path('sitePage/site3/', views.site3, name='site3'),
+    path('sitePage/site4/', views.site4, name='site4'),
+    path('sitePage/地图1/', views.map1, name='map1'),
+    path('sitePage/地图2/', views.map2, name='map2'),
+    path('insert/3D/combined_map_globe/', views.combined_map_globe, name='combined_map_globe'),
+    path('insert/3D/time_varying_map_globe/', views.time_varying_map_globe, name='time_varying_map_globe'),
+    path('Map/china_map_3D/', views.china_map_3D, name='china_map_3D'),
+    path('Map/china_map_3D/', views.china_map_3D, name='china_map_3D'),
+    path('Map/china_map_3D/', views.china_map_3D, name='china_map_3D'),
+    path('insert/data-visual-analysis/category_counts_pie_chart/', views.category_counts_pie_chart, name='category_counts_pie_chart'),
+    path('insert/data-visual-analysis/combined_charts_new/', views.combined_charts_new, name='combined_charts_new'),
+    path('insert/data-visual-analysis/liquid_shape_diamond/', views.liquid_shape_diamond, name='liquid_shape_diamond'),
+    path('insert/data-visual-analysis/strange_creatures_rose_chart/', views.strange_creatures_rose_chart, name='strange_creatures_rose_chart'),
+    path('insert/data-visual-analysis/tree_shanhaijin_category_name/', views.tree_shanhaijin_category_name, name='tree_shanhaijin_category_name'),
+    path('insert/map/china_map_2D/', views.china_map_2D, name='china_map_2D'),
+    path('insert/map/china_heatmap/', views.china_heatmap, name='china_heatmap'),
+    path('insert/map/direction_statistics_3d_bar/', views.direction_statistics_3d_bar, name='direction_statistics_3d_bar'),
+    path('insert/map/Genus/', views.Genus, name='Genus'),
+    path('insert/map/province_quantity_bar_chart/', views.province_quantity_bar_chart, name='province_quantity_bar_chart'),
+    path('insert/map/province_quantity_horizontal_pictorialbar/', views.province_quantity_horizontal_pictorialbar, name='province_quantity_horizontal_pictorialbar'),
+    path('insert/map/scriptures/', views.scriptures, name='scriptures'),
+    path('insert/map/timeline_bar_book_num/', views.timeline_bar_book_num, name='timeline_bar_book_num'),
+    path('html/insert/symbol/symbolism_sentiment_analysis/', views.symbolism_sentiment_analysis, name='symbolism_sentiment_analysis'),
+    path('html/insert/symbol/wordcloud_phoenix_custom/', views.wordcloud_phoenix_custom, name='wordcloud_phoenix_custom'),
+    path('html/insert/value-visualization/combined_charts/', views.combined_charts, name='combined_charts'),
+    path('html/insert/value-visualization/wordcloud_phoenix_custom/', views.wordcloud_phoenix_custom, name='wordcloud_phoenix_custom'),
+]
